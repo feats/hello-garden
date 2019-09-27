@@ -1,0 +1,19 @@
+{
+  "name": "k8s-nodejs-pipeline",
+  "version": "0.1.0",
+  "description": "Minimal build & deploy pipeline",
+  "author": "Jens Peter Secher",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jpsecher@bitbucket.org/jpsecher/k8s-nodejs-pipeline.git"
+  },
+  "devDependencies": {
+    "mocha": "^4.1.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "postinstall": "./scripts/setup-node-env.sh"
+  },
+  "browserslist": {}
+}
