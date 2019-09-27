@@ -10,7 +10,7 @@
 ## Plan
 
 - Setup a pipeline with Skaffold with a development profile for local build & deployment.  Focus on NodeJS services with shared, in-tree JS packages.
-- Add unit/acceptance tests to the pipeline.  Focus on ?.
+- Add unit/acceptance tests to the pipeline using cypress.  Focus on speed & separate testing.
 - Add integration tests to the pipeline.  Focus on DB injection & test driving.
 - Add production profile to Google Cloud Platform.
 - Setup the pipeline using Garden, instead of Skaffold.  Compare.

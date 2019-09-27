@@ -1,9 +1,12 @@
 { "folders":
   [ { "path": ".."
     , "folder_exclude_patterns":
-      []
+      [ "cypress/screenshots"
+      , "node_modules"
+      ]
     , "file_exclude_patterns":
-      []
+      [ "package-lock.json"
+      ]
     }
   ]
 }
