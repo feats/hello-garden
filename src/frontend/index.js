@@ -13,7 +13,18 @@ frontend.get('/', (req, res) => {
       <script type="text/javascript">
         $(document).ready(() => {
           $("#get-answer").click(() => {
-            $("#contents").replaceWith("<p>The answer is 42<p>")
+            $.ajax({
+              type: "GET",
+              url: "/answer",
+              success: (data) => {
+                console.log('got answer')
+                $("#contents").replaceWith("<p>The answer is "+data+"<p>")
+              },
+              error: (err) => {
+                console.log('got error')
+                $("#contents").replaceWith("<p>The answer is unknown<p>")
+              }
+            })
           })
         })
       </script>
@@ -23,8 +34,14 @@ frontend.get('/', (req, res) => {
       <div id="contents">
         <p>Do you want to know the meaning of everything?</p>
         <button id="get-answer">Please tell me</button>
-       </div>
+      </div>
     </body></html>`)
+})
+
+frontend.get('/answer', (req, res) => {
+  res.set('Content-Type', 'text/plain')
+  const number = 42
+  res.send(number.toString())
 })
 
 module.exports = frontend
