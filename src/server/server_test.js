@@ -29,16 +29,29 @@ describe('server API', () => {
   })
   describe('random', () => {
     it('should return a random number', done => {
+      let firstNumber
       request(app)
       .get('/random')
       .set('Accept', 'text/plain')
       .expect('Content-Type', /text\/plain/)
       .expect(200)
       .expect(res => {
-        const numberX = res.text
-        expect(numberX).to.be.an.integer()
+        firstNumber = res.text
+        expect(firstNumber).to.be.an.integer()
       })
-      .end(done)
+      .then(() => {
+        request(app)
+        .get('/random')
+        .set('Accept', 'text/plain')
+        .expect('Content-Type', /text\/plain/)
+        .expect(200)
+        .expect(res => {
+          const secondNumber = res.text
+          expect(secondNumber).to.be.an.integer()
+          expect(secondNumber).to.not.equal(firstNumber)
+        })
+        .end(done)
+      })
     })
   })
 })

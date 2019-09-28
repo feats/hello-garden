@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/random', (req, res) => {
   res.set('Content-Type', 'text/plain')
-  const number = 1
+  const number = Math.floor(Math.random() * 65536)
   res.send(number.toString())
 })
 
