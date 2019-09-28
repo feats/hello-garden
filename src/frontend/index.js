@@ -15,13 +15,12 @@ frontend.get('/', (req, res) => {
           $("#get-answer").click(() => {
             $.ajax({
               type: "GET",
-              url: "/answer",
+              url: "http://localhost:3000/random",
               success: (data) => {
-                console.log('got answer')
                 $("#contents").replaceWith("<p>The answer is "+data+"<p>")
               },
               error: (err) => {
-                console.log('got error')
+                console.log('got error:' + JSON.stringify(err))
                 $("#contents").replaceWith("<p>The answer is unknown<p>")
               }
             })
@@ -36,12 +35,6 @@ frontend.get('/', (req, res) => {
         <button id="get-answer">Please tell me</button>
       </div>
     </body></html>`)
-})
-
-frontend.get('/answer', (req, res) => {
-  res.set('Content-Type', 'text/plain')
-  const number = 42
-  res.send(number.toString())
 })
 
 module.exports = frontend

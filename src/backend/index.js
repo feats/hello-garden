@@ -15,6 +15,7 @@ backend.get('/', (req, res) => {
 
 backend.get('/random', (req, res) => {
   res.set('Content-Type', 'text/plain')
+  res.set('Access-Control-Allow-Origin', '*')
   const number = Math.floor(Math.random() * 65536)
   res.send(number.toString())
 })
