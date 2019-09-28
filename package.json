@@ -14,13 +14,14 @@
     "chai-integer": "^0.1.0",
     "cypress": "^3.4.1",
     "mocha": "^4.1.0",
+    "nodemon": "^1.19.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1"
   },
   "scripts": {
-    "all": "node src/backend/app.js & node src/frontend/app.js",
+    "all": "nodemon src/backend/app.js & nodemon src/frontend/app.js",
     "cy:open": "npx cypress@latest open",
     "cy:run": "npx cypress@latest run",
     "test:units": "mocha src/lib/**/*_test.js src/backend/**/*_test.js src/frontend/**/*_test.js",
