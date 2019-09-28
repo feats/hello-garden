@@ -1,9 +1,9 @@
 'use strict'
 
 const express = require('express')
-const app = express()
+const backend = express()
 
-app.get('/', (req, res) => {
+backend.get('/', (req, res) => {
   res.json({
     siteversion: require('../../package').version,
     apiversion: '1',
@@ -13,10 +13,10 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/random', (req, res) => {
+backend.get('/random', (req, res) => {
   res.set('Content-Type', 'text/plain')
   const number = Math.floor(Math.random() * 65536)
   res.send(number.toString())
 })
 
-module.exports = app
+module.exports = backend

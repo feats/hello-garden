@@ -8,8 +8,8 @@ const request = require('supertest')
 chai.use(require('chai-integer'))
 const expect = chai.expect
 
-describe('server API', () => {
-  const app = require('server')
+describe('backend API', () => {
+  const app = require('backend')
   describe('root', () => {
     it('should return a JSON structure with version and address', done => {
       request(app)

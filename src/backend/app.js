@@ -1,12 +1,12 @@
 'use strict'
 
-const server = require('./server')
+const backend = require('backend')
 const tcp = require('__/tcp')
 const port = tcp.normalizePort(process.env.PORT) || 3000
 
-const serverListener = server.listen(port, () => {
+const serverListener = backend.listen(port, () => {
   console.log(JSON.stringify({
-    status: 'Service up',
+    status: 'backend up',
     pid: process.pid,
     port: serverListener.address().port
   }))
