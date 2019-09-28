@@ -11,14 +11,18 @@
   "browserslist": {},
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-integer": "^0.1.0",
     "cypress": "^3.4.1",
-    "mocha": "^4.1.0"
+    "mocha": "^4.1.0",
+    "supertest": "^4.0.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "scripts": {
     "cy:open": "npx cypress@latest open",
     "cy:run": "npx cypress@latest run",
-    "test:units": "mocha src/lib/**/*_test.js",
+    "test:units": "mocha src/lib/**/*_test.js src/server/**/*_test.js",
     "postinstall": "./scripts/setup-node-env.sh"
   }
 }
