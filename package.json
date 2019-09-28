@@ -20,6 +20,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
+    "all": "node src/backend/app.js & node src/frontend/app.js",
     "cy:open": "npx cypress@latest open",
     "cy:run": "npx cypress@latest run",
     "test:units": "mocha src/lib/**/*_test.js src/backend/**/*_test.js src/frontend/**/*_test.js",

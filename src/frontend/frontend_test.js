@@ -15,7 +15,7 @@ describe('Frontend', () => {
       .expect('Content-Type', /text\/html/)
       .expect(200)
       .expect(res => {
-         expect(res.text).to.equal('hello')
+        expect(res.text).to.match(/The answer is [0-9]*/)
       })
       .end(done)
     })

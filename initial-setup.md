@@ -19,3 +19,9 @@ Then get the dependencies:
 ## Misc
 
 The `package.json` will ensure that `scripts/setup-node-env.sh` will be run after dependencies have been downloaded.
+
+Global NPM goodness:
+
+    $ npm install -g eslint
+    $ npm install -g eslint-plugin-cypress
+    $ npm install -g standard
