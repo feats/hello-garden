@@ -6,7 +6,7 @@ const port = tcp.normalizePort(process.env.PORT) || 3000
 
 const serverListener = backend.listen(port, () => {
   console.log(JSON.stringify({
-    status: 'backend up',
+    status: 'Backend up',
     pid: process.pid,
     port: serverListener.address().port
   }))
