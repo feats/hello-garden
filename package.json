@@ -25,7 +25,7 @@
     "all": "nodemon src/backend/app.js & nodemon src/frontend/app.js",
     "cy:open": "npx cypress@latest open",
     "cy:run": "npx cypress@latest run",
-    "test:units": "mocha src/lib/**/*_test.js src/backend/**/*_test.js src/frontend/**/*_test.js",
+    "test:units": "mocha src/shared/**/*_test.js src/backend/**/*_test.js src/frontend/**/*_test.js",
     "postinstall": "./scripts/setup-node-env.sh"
   }
 }
