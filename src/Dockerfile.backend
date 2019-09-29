@@ -38,7 +38,7 @@ RUN npm run backend:units
 ## Production
 ##
 FROM production-dependencies AS production
-COPY --from=test $HOME/backend ./backend
-COPY --from=test $HOME/shared ./shared
+COPY --from=test $HOME/backend ./backend/
+COPY --from=test $HOME/shared ./shared/
 EXPOSE 3000
 CMD ["node", "backend/app.js"]
