@@ -12,9 +12,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-integer": "^0.1.0",
-    "cypress": "^3.4.1",
     "mocha": "^4.1.0",
     "nodemon": "^1.19.2",
+    "nsrun": "^1.4.1",
     "supertest": "^4.0.2"
   },
   "dependencies": {
@@ -22,10 +22,13 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "all": "nodemon src/backend/app.js & nodemon src/frontend/app.js",
-    "cy:open": "npx cypress@latest open",
-    "cy:run": "npx cypress@latest run",
-    "test:units": "mocha src/shared/**/*_test.js src/backend/**/*_test.js src/frontend/**/*_test.js",
-    "postinstall": "./scripts/setup-node-env.sh"
+    "shared:units": "mocha shared/**/*_test.js",
+    "backend": "nodemon backend/app.js",
+    "backend:units": "mocha backend/**/*_test.js",
+    "frontend": "nodemon frontend/app.js",
+    "frontend:units": "mocha frontend/**/*_test.js",
+    "start": "nsrun backend & nsrun frontend",
+    "units": "mocha shared/**/*_test.js backend/**/*_test.js frontend/**/*_test.js",
+    "postinstall": "./setup-npm-env.sh"
   }
 }

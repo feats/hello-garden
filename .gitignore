@@ -1,4 +1,6 @@
 cypress/fixtures/example.json
 cypress/integration/examples/
 cypress/screenshots/
+
+src/*/node_modules
 node_modules

@@ -16,6 +16,10 @@ Then get the dependencies:
 
     $ npm install
 
+## Skaffold
+
+    $ brew install skaffold
+
 ## Misc
 
 The `package.json` will ensure that `scripts/setup-node-env.sh` will be run after dependencies have been downloaded.
