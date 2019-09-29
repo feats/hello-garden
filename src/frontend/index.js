@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express')
+const request = require('request')
 
 const frontend = express()
 
@@ -15,7 +16,7 @@ frontend.get('/', (req, res) => {
           $("#get-answer").click(() => {
             $.ajax({
               type: "GET",
-              url: "http://localhost:3000/random",
+              url: "/answer",
               success: (data) => {
                 $("#contents").replaceWith("<p>The answer is "+data+"<p>")
               },
@@ -35,6 +36,19 @@ frontend.get('/', (req, res) => {
         <button id="get-answer">Please tell me</button>
       </div>
     </body></html>`)
+})
+
+frontend.get('/answer', (req, res) => {
+  const backend = require('backend/config').server
+  const url = `http://localhost:${backend.port}/random`
+  request(url, {}, (err, _res, answer) => {
+    if (err) {
+      console.log('got error:' + JSON.stringify(err))
+      res.end(500)
+    }
+    res.set('Content-Type', 'text/plain')
+    res.send(answer.toString())
+  })
 })
 
 module.exports = frontend

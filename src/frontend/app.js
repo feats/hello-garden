@@ -1,12 +1,11 @@
 'use strict'
 
 const frontend = require('frontend')
-const tcp = require('__/tcp')
-const port = tcp.normalizePort(process.env.PORT) || 5000
+const config = require('frontend/config').server
 
-const serverListener = frontend.listen(port, () => {
+const serverListener = frontend.listen(config.port, () => {
   console.log(JSON.stringify({
-    status: 'Frontend up',
+    status: 'Frontend running',
     pid: process.pid,
     port: serverListener.address().port
   }))

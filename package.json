@@ -18,7 +18,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "request": "^2.88.0"
   },
   "scripts": {
     "all": "nodemon src/backend/app.js & nodemon src/frontend/app.js",
