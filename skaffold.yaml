@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+metadata:
+  name: k8s-nodejs-pipeline
+build:
+  artifacts:
+  - image: jpsecher/k8s-nodejs-pipeline-backend
+    context: src
+    docker:
+      dockerfile: Dockerfile.backend
+  - image: jpsecher/k8s-nodejs-pipeline-frontend
+    context: src
+    docker:
+      dockerfile: Dockerfile.frontend
+  local:
+    push: false
