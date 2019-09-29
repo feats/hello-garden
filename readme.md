@@ -14,3 +14,7 @@
 - Add integration tests to the pipeline.  Focus on DB injection & test driving.
 - Add production profile to Google Cloud Platform.
 - Setup the pipeline using Garden, instead of Skaffold.  Compare.
+
+## Instructions
+
+    $ skaffold build
