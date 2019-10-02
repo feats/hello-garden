@@ -14,3 +14,41 @@
 - Add integration tests to the pipeline.  Focus on DB injection & test driving.
 - Add production profile to Google Cloud Platform.
 - Setup the pipeline using Garden, instead of Skaffold.  Compare.
+
+## Notes
+
+    $ brew tap garden-io/garden
+    $ brew install garden-cli
+    $ brew cask install google-cloud-sdk
+    $ gcloud components update
+    $ gcloud auth login
+    $ gcloud compute regions list
+    $ gcloud compute zones list
+    $ gcloud config set compute/region europe-west1 
+    $ gcloud config set compute/zone europe-west1-b
+    $ gcloud projects create kaleidoscope-1-nodejs --set-as-default
+
+Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
+
+Create a cluster (defaults to single zone, stable K8s channel):
+
+    $ gcloud container clusters create garden-1
+    $ gcloud container clusters list
+    $ gcloud container clusters get-credentials garden-1
+
+Last one puts certificate, etc. in `~/.kube/config`.  Check that the new cluster is the *current*:
+
+    $ kubectl config get-contexts
+    $ kubectl get ns
+
+The `garden.yml` in the root of the repo must contain an environment `gke` that has context `gke_${project}_${zone}_${cluster}`.  The populate the cluster with registry, build pipeline, etc.:
+
+    $ garden --env=gke plugins kubernetes cluster-init
+
+Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Garden load balancer:
+
+    $ kubectl describe service --namespace=garden-system garden-nginx-nginx-ingress-controller | grep 'LoadBalancer Ingress'
+
+Start the development environment:
+
+    $ garden dev --env=gke

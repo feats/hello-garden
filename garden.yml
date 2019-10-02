@@ -1,0 +1,10 @@
+kind: Project
+name: k8s-nodejs-pipeline
+environments:
+  - name: gke
+    providers:
+      - name: kubernetes
+        context: gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
+        defaultHostname: kaleidoscope.dk
+        buildMode: cluster-docker
+        setupIngressController: nginx

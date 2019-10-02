@@ -1,6 +1,7 @@
+.garden/
 cypress/fixtures/example.json
 cypress/integration/examples/
 cypress/screenshots/
-
-src/*/node_modules
+error.log
 node_modules
+src/*/node_modules
