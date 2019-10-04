@@ -3,6 +3,12 @@ name: backend
 description: Backend service
 type: container
 dockerfile: Dockerfile-backend
+include:
+  - Dockerfile-backend
+  - package.json
+  - setup-npm-env.sh
+  - src/backend
+  - src/shared
 services:
   - name: backend
     ports:
@@ -20,6 +26,12 @@ name: frontend
 description: Frontend web service
 type: container
 dockerfile: Dockerfile-frontend
+include:
+  - Dockerfile-frontend
+  - package.json
+  - setup-npm-env.sh
+  - src/frontend
+  - src/shared
 services:
   - name: frontend
     ports:

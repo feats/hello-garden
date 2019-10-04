@@ -19,6 +19,9 @@
 
     $ brew tap garden-io/garden
     $ brew install garden-cli
+
+### GKE
+
     $ brew cask install google-cloud-sdk
     $ gcloud components update
     $ gcloud auth login
@@ -31,21 +34,21 @@
 
 Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
 
-Create a cluster (defaults to single zone, stable K8s channel):
+Create a cluster (with the above config it defaults to single zone & stable K8s channel):
 
-    $ gcloud container clusters create garden-1
+    $ gcloud container clusters create garden-1 --quiet
     $ gcloud container clusters list
     $ gcloud container clusters get-credentials garden-1
 
 Last one puts certificate, etc. in `~/.kube/config`.  Check that the new cluster is the *current*:
 
-    $ kubectl config get-contexts
-    $ kubectl get ns
+    $ kubectl config current-context
+    $ kubectl config use-context gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
 
-The `garden.yml` in the root of the repo must contain an environment `gke` that has context `gke_${project}_${zone}_${cluster}`.  The populate the cluster with registry, build pipeline, etc.:
+The `garden.yml` in the root of the repo must contain an environment `staging` that has context `gke_${project}_${zone}_${cluster}`.  Then populate the cluster with registry, build pipeline, etc.:
 
-    $ garden --env=gke plugins kubernetes cluster-init
-    $ garden get status --env=gke
+    $ garden plugins kubernetes cluster-init --env=staging
+    $ garden get status --env=staging
 
 Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Garden load balancer:
 
@@ -53,16 +56,31 @@ Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Gard
 
 Start the development environment:
 
-    $ garden dev --env=gke
+    $ garden dev --env=staging
 
 
 ...
 
+    $ garden delete environment staging
 	$ gcloud container clusters delete garden-1
 
+### Docker Desktop
+
+
+
+
+## Kubernetes
+
+    $ kubectl config view
+    $ kubectl config get-contexts
+    $ kubectl get ns
+    $ kubectl --namespace demo-project delete pod,service --all
+    $ kubectl delete namespaces demo-project
 
 ## Notes
 
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
 - Garden: All examples use deprecated syntax.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
+- Garden: How to stop (& cleanup) a local-kubernetes?
+- https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
