@@ -24,9 +24,10 @@
     $ gcloud auth login
     $ gcloud compute regions list
     $ gcloud compute zones list
-    $ gcloud config set compute/region europe-west1 
+    $ gcloud config set compute/region europe-west1
     $ gcloud config set compute/zone europe-west1-b
     $ gcloud projects create kaleidoscope-1-nodejs --set-as-default
+    $ gcloud config set project kaleidoscope-1-nodejs
 
 Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
 
@@ -52,3 +53,8 @@ Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Gard
 Start the development environment:
 
     $ garden dev --env=gke
+
+
+...
+
+	$ gcloud container clusters delete garden-1
