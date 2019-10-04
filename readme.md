@@ -45,6 +45,7 @@ Last one puts certificate, etc. in `~/.kube/config`.  Check that the new cluster
 The `garden.yml` in the root of the repo must contain an environment `gke` that has context `gke_${project}_${zone}_${cluster}`.  The populate the cluster with registry, build pipeline, etc.:
 
     $ garden --env=gke plugins kubernetes cluster-init
+    $ garden get status --env=gke
 
 Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Garden load balancer:
 
@@ -58,3 +59,8 @@ Start the development environment:
 ...
 
 	$ gcloud container clusters delete garden-1
+
+
+## Notes
+
+- Garden: `name` is freetext in `environments`, but a selector in `providers`.
