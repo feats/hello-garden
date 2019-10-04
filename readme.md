@@ -64,3 +64,5 @@ Start the development environment:
 ## Notes
 
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
+- Garden: All examples use deprecated syntax.
+- Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd

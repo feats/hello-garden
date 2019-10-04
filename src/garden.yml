@@ -1,0 +1,31 @@
+kind: Module
+name: backend
+description: Backend service
+type: container
+dockerfile: Dockerfile-backend
+services:
+  - name: backend
+    ports:
+      - name: api
+        containerPort: 3000
+    healthCheck:
+      httpGet:
+        path: /
+        port: api
+
+---
+
+kind: Module
+name: frontend
+description: Frontend web service
+type: container
+dockerfile: Dockerfile-frontend
+services:
+  - name: frontend
+    ports:
+      - name: http
+        containerPort: 5000
+    healthCheck:
+      httpGet:
+        path: /
+        port: http

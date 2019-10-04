@@ -32,14 +32,13 @@ RUN npm set progress=false && \
 ##
 FROM test-dependencies AS test
 COPY . ./
-RUN npm run frontend:units
+RUN npm run backend:unit
 
 ##
 ## Production
 ##
 FROM production-dependencies AS production
-COPY --from=test $HOME/frontend ./frontend/
-COPY --from=test $HOME/backend/config.js ./backend/
+COPY --from=test $HOME/backend ./backend/
 COPY --from=test $HOME/shared ./shared/
-EXPOSE 5000
-CMD ["node", "frontend/app.js"]
+EXPOSE 3000
+CMD ["node", "backend/app.js"]

@@ -22,11 +22,11 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "shared:units": "mocha shared/**/*_test.js",
+    "shared:unit": "mocha shared/**/*_test.js",
     "backend": "nodemon backend/app.js",
-    "backend:units": "mocha backend/**/*_test.js",
+    "backend:unit": "mocha backend/**/*_test.js",
     "frontend": "nodemon frontend/app.js",
-    "frontend:units": "mocha frontend/**/*_test.js",
+    "frontend:unit": "mocha frontend/**/*_test.js",
     "start": "nsrun backend & nsrun frontend",
     "units": "mocha shared/**/*_test.js backend/**/*_test.js frontend/**/*_test.js",
     "postinstall": "./setup-npm-env.sh"

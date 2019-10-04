@@ -1,15 +1,16 @@
 kind: Project
 name: k8s-nodejs-pipeline
-defaultEnvironment: devel
 environments:
   - name: devel
   - name: staging
+defaultEnvironment: devel
 providers:
   - name: local-kubernetes
     environments:
       - devel
   - name: kubernetes
     context: gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
+    # namespace: default
     defaultHostname: kaleidoscope.dk
     buildMode: cluster-docker
     setupIngressController: nginx
