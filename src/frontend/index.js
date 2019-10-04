@@ -39,8 +39,8 @@ frontend.get('/', (req, res) => {
 })
 
 frontend.get('/answer', (req, res) => {
-  const backend = require('backend/config').server
-  const url = `http://localhost:${backend.port}/random`
+  const backend = require('frontend/config').server.backendUrl
+  const url = `http://${backend}/random`
   request(url, {}, (err, _res, answer) => {
     if (err) {
       console.log('got error:' + JSON.stringify(err))

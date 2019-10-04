@@ -7,8 +7,8 @@ include:
   - Dockerfile-backend
   - package.json
   - setup-npm-env.sh
-  - src/backend
-  - src/shared
+  - src/backend/
+  - src/shared/
 services:
   - name: backend
     ports:
@@ -30,8 +30,8 @@ include:
   - Dockerfile-frontend
   - package.json
   - setup-npm-env.sh
-  - src/frontend
-  - src/shared
+  - src/frontend/
+  - src/shared/
 services:
   - name: frontend
     ports:
@@ -41,3 +41,8 @@ services:
       httpGet:
         path: /
         port: http
+    ingresses:
+      - path: /
+        port: http
+    dependencies:
+      - backend

@@ -18,5 +18,6 @@ const tcp = require('__/tcp')
 //     mymodule(port)
 
 exports.server = {
-  port: tcp.normalizePort(process.env.PORT) || 5000
+  port: tcp.normalizePort(process.env.PORT) || 5000,
+  backendUrl: 'backend'
 }
