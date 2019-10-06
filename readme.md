@@ -20,6 +20,23 @@
     $ brew tap garden-io/garden
     $ brew install garden-cli
 
+### Local Docker for Desktop
+
+Start Garden pipeline:
+
+    $ garden plugins local-kubernetes cluster-init --env=devel
+
+How to get the token for the dashboard?  Is it OK to just click Skip?
+
+    $ garden dev --env=devel
+...
+
+
+Cleanup:
+
+    $ garden delete environment devel
+
+
 ### GKE
 
     $ brew cask install google-cloud-sdk
@@ -61,13 +78,10 @@ Start the development environment:
 
 ...
 
+Cleanup:
+
     $ garden delete environment staging
 	$ gcloud container clusters delete garden-1
-
-### Docker Desktop
-
-
-
 
 ## Kubernetes
 
@@ -82,5 +96,4 @@ Start the development environment:
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
 - Garden: All examples use deprecated syntax.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
-- Garden: How to stop (& cleanup) a local-kubernetes?
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/

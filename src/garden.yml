@@ -7,16 +7,21 @@ include:
   - Dockerfile-backend
   - package.json
   - setup-npm-env.sh
-  - src/backend/
-  - src/shared/
+  - src/backend/**/*
+  - src/shared/**/*
 services:
   - name: backend
     ports:
       - name: api
         containerPort: 3000
+        servicePort: 80
     healthCheck:
       httpGet:
         path: /
+        port: api
+    ingresses:
+      # Do we really have to list every endpoint?
+      - path: /random
         port: api
 
 ---
@@ -30,8 +35,8 @@ include:
   - Dockerfile-frontend
   - package.json
   - setup-npm-env.sh
-  - src/frontend/
-  - src/shared/
+  - src/frontend/**/*
+  - src/shared/**/*
 services:
   - name: frontend
     ports:
@@ -43,6 +48,8 @@ services:
         port: http
     ingresses:
       - path: /
+        port: http
+      - path: /answer
         port: http
     dependencies:
       - backend
