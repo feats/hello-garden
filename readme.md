@@ -64,7 +64,7 @@ Create a cluster (with the above config it defaults to single zone & stable K8s 
     $ gcloud container clusters list
     $ gcloud container clusters get-credentials garden-1
 
-Last one puts certificate, etc. in `~/.kube/config`.  
+Last one puts certificate, etc. in `~/.kube/config`.
 
 Check that the new cluster is the *current*, or change the context:
 
@@ -105,6 +105,7 @@ Cleanup:
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
 - Garden: All examples use deprecated syntax.
 - Garden Console displays blank page for Logs.
+- Garden does not cleanup the module build directories, so to make sure that, say, the `include` actually includes what is needed, you need to manually clean the build dirs.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
 - buildbot.net

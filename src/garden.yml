@@ -36,6 +36,7 @@ include:
   - package*.json
   - setup-npm-env.sh
   - frontend/*
+  - backend/config.js
   - shared/*
 services:
   - name: frontend
