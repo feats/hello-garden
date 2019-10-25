@@ -1,14 +1,14 @@
 kind: Module
-name: backend
+name: mybackend
 description: Backend service
 type: container
 dockerfile: Dockerfile-backend
 include:
   - Dockerfile-backend
-  - package.json
+  - package*.json
   - setup-npm-env.sh
-  - src/backend/**/*
-  - src/shared/**/*
+  - backend/*
+  - shared/*
 services:
   - name: backend
     ports:
@@ -27,16 +27,16 @@ services:
 ---
 
 kind: Module
-name: frontend
+name: myfrontend
 description: Frontend web service
 type: container
 dockerfile: Dockerfile-frontend
 include:
   - Dockerfile-frontend
-  - package.json
+  - package*.json
   - setup-npm-env.sh
-  - src/frontend/**/*
-  - src/shared/**/*
+  - frontend/*
+  - shared/*
 services:
   - name: frontend
     ports:

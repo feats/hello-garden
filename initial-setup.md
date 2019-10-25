@@ -16,9 +16,10 @@ Then get the dependencies:
 
     $ npm install
 
-## Skaffold
+## Garden
 
-    $ brew install skaffold
+    $ brew tap garden-io/garden
+    $ brew install garden-cli
 
 ## Misc
 

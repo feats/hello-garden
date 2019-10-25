@@ -19,21 +19,18 @@
 
 - Skaffold is somewhat limited and inflexible, so Garden seems a better fit for our use case.
 
-## Notes
-
-    $ brew tap garden-io/garden
-    $ brew install garden-cli
-
 ### Local Docker for Desktop
 
 Start Garden pipeline:
 
     $ garden plugins local-kubernetes cluster-init --env=devel
 
-How to get the token for the dashboard?  Is it OK to just click Skip?
+Start dev console:
 
     $ garden dev --env=devel
-...
+
+
+
 
 
 Cleanup:
@@ -42,6 +39,8 @@ Cleanup:
 
 
 ### GKE
+
+GCP console: https://console.cloud.google.com/
 
     $ brew cask install google-cloud-sdk
     $ gcloud components update
@@ -53,7 +52,11 @@ Cleanup:
     $ gcloud projects create kaleidoscope-1-nodejs --set-as-default
     $ gcloud config set project kaleidoscope-1-nodejs
 
-Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine)
+The configuration is stored locally in `~/.config/gcloud/`.  You can view the current configuration:
+
+    $ gcloud config list
+
+Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine) in GCP.
 
 Create a cluster (with the above config it defaults to single zone & stable K8s channel):
 
@@ -61,7 +64,9 @@ Create a cluster (with the above config it defaults to single zone & stable K8s 
     $ gcloud container clusters list
     $ gcloud container clusters get-credentials garden-1
 
-Last one puts certificate, etc. in `~/.kube/config`.  Check that the new cluster is the *current*:
+Last one puts certificate, etc. in `~/.kube/config`.  
+
+Check that the new cluster is the *current*, or change the context:
 
     $ kubectl config current-context
     $ kubectl config use-context gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
@@ -99,6 +104,7 @@ Cleanup:
 
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
 - Garden: All examples use deprecated syntax.
+- Garden Console displays blank page for Logs.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
 - buildbot.net
