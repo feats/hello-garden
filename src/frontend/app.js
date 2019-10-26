@@ -10,3 +10,4 @@ const serverListener = frontend.listen(config.port, () => {
     port: serverListener.address().port
   }))
 })
+

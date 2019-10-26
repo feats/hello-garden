@@ -14,6 +14,9 @@
 - Add integration tests to the pipeline.  Focus on DB injection & test driving.
 - Add staging profile to Google Cloud Platform.
 - Setup the pipeline using Garden, instead of Skaffold.  Compare.
+- Can Garden mount source directly into containers to avoid rebuilding?
+- Isolate each modules/package as much as possible: put package.json, Dockerfile, etc into package dir.  Also for secrets.
+- Does Garden make sure that the right environments are used for the current context?
 
 ## Observations
 
