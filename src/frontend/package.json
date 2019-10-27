@@ -1,0 +1,26 @@
+{
+  "name": "myfrontend",
+  "version": "0.2.0",
+  "description": "Minimal build & deploy pipeline - frontend",
+  "author": "Jens Peter Secher",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/featsco/hello-garden.git"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^4.1.0",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha *_test.js",
+    "postinstall": "./setup-npm-env.sh"
+  }
+}

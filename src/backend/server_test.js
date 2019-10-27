@@ -22,7 +22,7 @@ describe('backend API', () => {
         expect(res.body).to.have.property('apiversion')
         expect(res.body.apiversion).to.equal('1')
         expect(res.body).to.have.property('siteversion')
-        expect(res.body.siteversion).to.equal('0.1.0')
+        expect(res.body.siteversion).to.equal('0.2.0')
       })
       .end(done)
     })

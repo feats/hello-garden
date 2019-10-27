@@ -5,7 +5,7 @@ const backend = express()
 
 backend.get('/', (req, res) => {
   res.json({
-    siteversion: require('../package').version,
+    siteversion: require('backend/package').version,
     apiversion: '1',
     hostname: req.hostname,
     address: req.ip,

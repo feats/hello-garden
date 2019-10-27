@@ -1,7 +1,3 @@
 .garden/
-cypress/fixtures/example.json
-cypress/integration/examples/
-cypress/screenshots/
 error.log
-node_modules
 src/*/node_modules

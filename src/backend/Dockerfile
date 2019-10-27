@@ -12,10 +12,11 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY package.json package-lock.json setup-npm-env.sh ./
+RUN mkdir shared backend
+WORKDIR $HOME/backend
+COPY backend/package*.json backend/setup-npm-env.sh ./
 RUN touch config.js && \
-    mkdir shared fixtures backend frontend && \
-    npm set progress=false && \
+	npm set progress=false && \
     npm config set depth 0 && \
     npm install --only=production
 
@@ -28,17 +29,23 @@ RUN npm set progress=false && \
     npm install
 
 ##
+## Source code
+##
+FROM production-dependencies AS source
+COPY shared/ ../shared/
+COPY backend/ ./
+
+##
 ## Test
 ##
 FROM test-dependencies AS test
-COPY . ./
-RUN npm run backend:unit
+COPY --from=source $HOME/backend/ $HOME/backend/
+COPY --from=source $HOME/shared/ $HOME/shared/
+RUN npm test
 
 ##
 ## Production
 ##
-FROM production-dependencies AS production
-COPY --from=test $HOME/backend ./backend/
-COPY --from=test $HOME/shared ./shared/
+FROM source AS production
 EXPOSE 3000
-CMD ["node", "backend/app.js"]
+CMD ["node", "app.js"]

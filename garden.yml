@@ -1,5 +1,5 @@
 kind: Project
-name: k8s-nodejs-pipeline
+name: hello-garden
 environments:
   - name: devel
   - name: staging
@@ -10,7 +10,7 @@ providers:
       - devel
   - name: kubernetes
     context: gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
-    # namespace: staging
+    namespace: staging
     defaultHostname: kaleidoscope.dk
     buildMode: cluster-docker
     setupIngressController: nginx

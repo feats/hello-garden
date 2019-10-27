@@ -32,10 +32,6 @@ Start dev console:
 
     $ garden dev --env=devel
 
-
-
-
-
 Cleanup:
 
     $ garden delete environment devel
@@ -87,12 +83,9 @@ Start the development environment:
 
     $ garden dev --env=staging
 
-
-...
-
 Cleanup:
 
-    $ garden delete environment staging
+    $ garden delete env --env=staging
 	$ gcloud container clusters delete garden-1
 
 ## Kubernetes
