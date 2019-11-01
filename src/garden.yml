@@ -3,6 +3,9 @@ name: mybackend
 description: Backend service
 type: container
 dockerfile: backend/Dockerfile
+hotReload:
+  sync:
+    - target: /home/node/
 services:
   - name: backend
     ports:
@@ -25,6 +28,9 @@ name: myfrontend
 description: Frontend web service
 type: container
 dockerfile: frontend/Dockerfile
+hotReload:
+  sync:
+    - target: /home/node/
 services:
   - name: frontend
     ports:

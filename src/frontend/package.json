@@ -1,6 +1,6 @@
 {
   "name": "myfrontend",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Minimal build & deploy pipeline - frontend",
   "author": "Jens Peter Secher",
   "license": "ISC",
@@ -11,11 +11,11 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^4.1.0",
-    "nodemon": "^1.19.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "nodemon": "^1.19.2",
     "request": "^2.88.0"
   },
   "scripts": {

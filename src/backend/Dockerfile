@@ -48,4 +48,4 @@ RUN npm test
 ##
 FROM source AS production
 EXPOSE 3000
-CMD ["node", "app.js"]
+CMD ["npm", "start"]

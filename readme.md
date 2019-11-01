@@ -6,6 +6,7 @@
 - The pipeline must respond very fast to changes when doing development on a local machine with Kubernetes (via Docker for Desktop), possibly detached from the network.
 - The pipeline must be able to push to Google Container Registry.
 - The pipeline must deploy to Google Kubernetes Engine for production & staging.
+- It must be very hard to inadvertedly make changes to the production environment.
 
 ## Plan
 
@@ -24,17 +25,17 @@
 
 ### Local Docker for Desktop
 
-Start Garden pipeline:
+Start Garden pipeline for the default environment *devel*:
 
-    $ garden plugins local-kubernetes cluster-init --env=devel
+    $ garden plugins local-kubernetes cluster-init
 
 Start dev console:
 
-    $ garden dev --env=devel
+    $ garden dev --hot=backend --hot=frontend
 
 Cleanup:
 
-    $ garden delete environment devel
+    $ garden delete environment
 
 
 ### GKE
@@ -102,6 +103,7 @@ Cleanup:
 - Garden: All examples use deprecated syntax.
 - Garden Console displays blank page for Logs.
 - Garden does not cleanup the module build directories, so to make sure that, say, the `include` actually includes what is needed, you need to manually clean the build dirs.
+- Find a way to make Garden dashboard use the same port.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
 - buildbot.net
