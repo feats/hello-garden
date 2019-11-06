@@ -25,7 +25,7 @@
 
 ### Local Docker for Desktop
 
-Start Garden pipeline for the default environment *devel*:
+Start Garden pipeline for the default environment *development*:
 
     $ garden plugins local-kubernetes cluster-init
 

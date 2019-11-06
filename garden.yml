@@ -1,13 +1,13 @@
 kind: Project
 name: hello-garden
 environments:
-  - name: devel
+  - name: development
   - name: staging
-defaultEnvironment: devel
+defaultEnvironment: development
 providers:
   - name: local-kubernetes
     environments:
-      - devel
+      - development
   - name: kubernetes
     context: gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
     namespace: staging
