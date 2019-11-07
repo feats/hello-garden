@@ -1,13 +1,13 @@
 kind: Module
-name: mybackend
+name: backend
 description: Backend service
 type: container
 build:
   dependencies:
-    - name: shared
+    - name: mylib
       copy:
         - source: "./"
-          target: shared/
+          target: mylib/
 hotReload:
   sync:
     - target: /home/node/

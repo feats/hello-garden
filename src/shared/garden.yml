@@ -1,5 +1,5 @@
 kind: Module
-name: shared
+name: mylib
 description: Shared packages
 type: container
 hotReload:

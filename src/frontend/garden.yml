@@ -1,14 +1,14 @@
 kind: Module
-name: myfrontend
+name: frontend
 description: Frontend web service
 type: container
 build:
   dependencies:
-    - name: shared
+    - name: mylib
       copy:
         - source: "./"
-          target: shared/
-    - name: mybackend
+          target: mylib/
+    - name: backend
       copy:
         - source: "./"
           target: backend/
