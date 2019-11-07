@@ -1,0 +1,33 @@
+kind: Module
+name: myfrontend
+description: Frontend web service
+type: container
+build:
+  dependencies:
+    - name: shared
+      copy:
+        - source: "./"
+          target: shared/
+    - name: mybackend
+      copy:
+        - source: "./"
+          target: backend/
+hotReload:
+  sync:
+    - target: /home/node/
+services:
+  - name: frontend
+    ports:
+      - name: http
+        containerPort: 5000
+    healthCheck:
+      httpGet:
+        path: /
+        port: http
+    ingresses:
+      - path: /
+        port: http
+      - path: /answer
+        port: http
+    dependencies:
+      - backend

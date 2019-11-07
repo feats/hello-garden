@@ -13,9 +13,9 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ##
 FROM base AS production-dependencies
 COPY shared shared
-RUN mkdir backend frontend
+RUN mkdir frontend
 WORKDIR $HOME/frontend
-COPY frontend/package*.json ./
+COPY package*.json ./
 RUN touch config.js && \
     npm set progress=false && \
     npm config set depth 0
@@ -32,7 +32,7 @@ RUN npm install
 ##
 FROM production-dependencies AS source
 COPY backend/config.js ../backend/
-COPY frontend/ ./
+COPY ./ ./
 
 ##
 ## Test
