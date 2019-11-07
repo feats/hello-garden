@@ -3,6 +3,12 @@ name: mybackend
 description: Backend service
 type: container
 dockerfile: backend/Dockerfile
+build:
+  dependencies:
+    - name: shared
+      copy:
+        - source: "./"
+          target: shared/
 hotReload:
   sync:
     - target: /home/node/
@@ -22,12 +28,17 @@ services:
         port: api
 
 ---
-
 kind: Module
 name: myfrontend
 description: Frontend web service
 type: container
 dockerfile: frontend/Dockerfile
+build:
+  dependencies:
+    - name: shared
+      copy:
+        - source: "./"
+          target: shared/
 hotReload:
   sync:
     - target: /home/node/

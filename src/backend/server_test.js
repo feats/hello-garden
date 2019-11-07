@@ -9,7 +9,7 @@ chai.use(require('chai-integer'))
 const expect = chai.expect
 
 describe('backend API', () => {
-  const app = require('backend')
+  const app = require('./')
   describe('endpoint /', () => {
     it('should return a JSON structure with version and address', done => {
       request(app)

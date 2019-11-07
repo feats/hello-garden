@@ -4,7 +4,7 @@
 FROM node:alpine AS base
 RUN apk add --no-cache nodejs-current tini
 ENV HOME=/home/node
-# USER node
+USER node
 WORKDIR $HOME
 ENTRYPOINT ["/sbin/tini", "--"]
 
@@ -12,37 +12,34 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY shared shared
-RUN mkdir backend
-WORKDIR $HOME/backend
-COPY backend/package*.json ./
-RUN touch config.js && \
-    npm set progress=false && \
-    npm config set depth 0
-RUN npm install --only=production
+COPY package*.json ./
+RUN npm set progress=false && \
+    npm config set depth 0 && \
+    npm install --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm install
+RUN npm set progress=false && \
+    npm config set depth 0 && \
+    npm install
 
 ##
 ## Source code
 ##
 FROM production-dependencies AS source
-COPY backend/ ./
+COPY ./ ./
 
 ##
 ## Test
 ##
 FROM test-dependencies AS test
-COPY --from=source $HOME/backend/ $HOME/backend/
+COPY --from=source $HOME/./ $HOME/./
 RUN npm test
 
 ##
-## Production
+## Release
 ##
-FROM source AS production
-EXPOSE 3000
-CMD ["npm", "start"]
+FROM scratch AS production
+COPY --from=source /home/node/ /

@@ -2,7 +2,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const tcp = require('__/tcp')
+const tcp = require('./tcp')
 
 describe('tcp', () => {
   describe('normalizePort', () => {

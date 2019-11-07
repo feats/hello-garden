@@ -15,12 +15,12 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "mylib": "file:../shared",
     "nodemon": "^1.19.2",
     "request": "^2.88.0"
   },
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha *_test.js",
-    "postinstall": "./setup-npm-env.sh"
+    "test": "mocha *_test.js"
   }
 }

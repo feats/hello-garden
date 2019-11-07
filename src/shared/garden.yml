@@ -1,0 +1,8 @@
+kind: Module
+name: shared
+description: Shared packages
+type: container
+# dockerfile: Dockerfile
+hotReload:
+  sync:
+    - target: /home/node/

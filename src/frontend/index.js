@@ -39,7 +39,7 @@ frontend.get('/', (req, res) => {
 })
 
 frontend.get('/answer', (req, res) => {
-  const backend = require('frontend/config').server.backendUrl
+  const backend = require('./config').server.backendUrl
   const url = `http://${backend}/random`
   request(url, {}, (err, _res, answer) => {
     if (err) {
