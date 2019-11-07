@@ -10,7 +10,7 @@ const expect = chai.expect
 
 describe('backend API', () => {
   const app = require('backend')
-  describe('root', () => {
+  describe('endpoint /', () => {
     it('should return a JSON structure with version and address', done => {
       request(app)
       .get('/')
@@ -27,7 +27,9 @@ describe('backend API', () => {
       .end(done)
     })
   })
-  describe('random', () => {
+  describe('endpoint /random', () => {
+    it('should return Access Denied given invalid token')
+    it('should return a random number given valid token')
     it('should return a random number', done => {
       let firstNumber
       request(app)

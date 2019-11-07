@@ -16,7 +16,7 @@
 - Add staging profile to Google Cloud Platform.
 - Setup the pipeline using Garden, instead of Skaffold.  Compare.
 - Can Garden mount source directly into containers to avoid rebuilding?
-- Isolate each modules/package as much as possible: put package.json, Dockerfile, etc into package dir.  Also for secrets.
+- Isolate each module/package as much as possible: put package.json, Dockerfile, etc into package dir.  Also for secrets.
 - Does Garden make sure that the right environments are used for the current context?
 - Have shared "packages" that needs building (think Babel).
 - Have separate tests, like in garden/examples/demo-project, also for the shared lib.
@@ -96,7 +96,7 @@ Cleanup:
     $ kubectl config view
     $ kubectl config get-contexts
     $ kubectl get ns
-    $ kubectl --namespace demo-project delete pod,service --all
+    $ kubectl --namespace hello-garden delete pod,service --all
     $ kubectl delete namespaces demo-project
 
 ## Notes
