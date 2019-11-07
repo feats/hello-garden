@@ -7,11 +7,11 @@ build:
     - name: mylib
       copy:
         - source: "./"
-          target: mylib/
+          target: .shared/mylib/
     - name: backend
       copy:
         - source: "./"
-          target: backend/
+          target: .shared/backend/
 hotReload:
   sync:
     - target: /home/node/

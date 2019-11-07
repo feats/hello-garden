@@ -12,7 +12,7 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY mylib mylib
+COPY .shared/mylib mylib
 RUN mkdir frontend
 WORKDIR $HOME/frontend
 COPY package*.json ./
@@ -31,7 +31,7 @@ RUN npm install
 ## Source code
 ##
 FROM production-dependencies AS source
-COPY backend/config.js ../backend/
+COPY .shared/backend/config.js ../backend/
 COPY ./ ./
 
 ##

@@ -7,7 +7,7 @@ build:
     - name: mylib
       copy:
         - source: "./"
-          target: mylib/
+          target: .shared/mylib/
 hotReload:
   sync:
     - target: /home/node/
