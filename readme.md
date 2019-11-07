@@ -19,7 +19,7 @@
 - Isolate each modules/package as much as possible: put package.json, Dockerfile, etc into package dir.  Also for secrets.
 - Does Garden make sure that the right environments are used for the current context?
 - Have shared "packages" that needs building (think Babel).
-- Have separate tests, like in garden/examples/demo-project.
+- Have separate tests, like in garden/examples/demo-project, also for the shared lib.
 
 ## Observations
 
