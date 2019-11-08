@@ -22,7 +22,6 @@
   },
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha *_test.js",
-    "postinstall": "./setup-npm-env.sh"
+    "test": "mocha *_test.js"
   }
 }
