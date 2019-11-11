@@ -1,4 +1,10 @@
 ##
+## Images of shared modules
+##
+ARG MYLIB_IMAGE_VERSION=latest
+FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
+
+##
 ## Base
 ##
 FROM node:alpine AS base
@@ -12,7 +18,7 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY .shared/mylib mylib
+COPY --from=mylib / mylib
 RUN mkdir backend
 WORKDIR $HOME/backend
 COPY package*.json ./

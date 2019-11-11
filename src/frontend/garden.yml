@@ -4,14 +4,11 @@ description: Frontend web service
 type: container
 build:
   dependencies:
-    - name: mylib
-      copy:
-        - source: "./"
-          target: .shared/mylib/
-    - name: backend
-      copy:
-        - source: "./"
-          target: .shared/backend/
+    - mylib
+    - backend
+buildArgs:
+  MYLIB_IMAGE_VERSION: ${modules.mylib.version}
+  BACKEND_IMAGE_VERSION: ${modules.backend.version}
 hotReload:
   sync:
     - target: /home/node/

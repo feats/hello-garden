@@ -4,10 +4,9 @@ description: Backend service
 type: container
 build:
   dependencies:
-    - name: mylib
-      copy:
-        - source: "./"
-          target: .shared/mylib/
+    - mylib
+buildArgs:
+  MYLIB_IMAGE_VERSION: ${modules.mylib.version}
 hotReload:
   sync:
     - target: /home/node/

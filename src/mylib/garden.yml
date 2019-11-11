@@ -4,4 +4,4 @@ description: Shared packages
 type: container
 hotReload:
   sync:
-    - target: /home/node/
+    - target: /

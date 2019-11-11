@@ -1,4 +1,13 @@
 ##
+## Images of shared modules
+##
+ARG MYLIB_IMAGE_VERSION=latest
+ARG BACKEND_IMAGE_VERSION=latest
+
+FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
+FROM backend:${BACKEND_IMAGE_VERSION} AS backend
+
+##
 ## Base
 ##
 FROM node:alpine AS base
@@ -12,8 +21,8 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY .shared/mylib mylib
-RUN mkdir frontend
+COPY --from=mylib / mylib
+RUN mkdir frontend backend
 WORKDIR $HOME/frontend
 COPY package*.json ./
 RUN touch config.js && \
@@ -31,7 +40,7 @@ RUN npm install
 ## Source code
 ##
 FROM production-dependencies AS source
-COPY .shared/backend/config.js ../backend/
+COPY --from=backend /home/node/backend/config.js backend/config.js
 COPY ./ ./
 
 ##
