@@ -1,26 +1,16 @@
 ##
-## Images of shared modules
-##
-ARG MYLIB_IMAGE_VERSION=latest
-FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
-
-##
 ## Base
 ##
 FROM node:alpine AS base
-RUN apk add --no-cache nodejs-current tini
+RUN apk add --no-cache nodejs-current
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME
-ENTRYPOINT ["/sbin/tini", "--"]
 
 ##
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY --from=mylib / mylib
-RUN mkdir backend
-WORKDIR $HOME/backend
 COPY package*.json ./
 RUN npm set progress=false && \
     npm clean-install --quiet --depth 0 --only=production
@@ -29,7 +19,8 @@ RUN npm set progress=false && \
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm clean-install
+RUN npm set progress=false && \
+    npm clean-install --quiet --depth 0
 
 ##
 ## Source code
@@ -41,12 +32,11 @@ COPY ./ ./
 ## Test
 ##
 FROM test-dependencies AS test
-COPY --from=source $HOME/backend/ $HOME/backend/
+COPY --from=source $HOME/./ $HOME/./
 RUN npm test
 
 ##
-## Production
+## Release
 ##
-FROM source AS production
-EXPOSE 3000
-CMD ["npm", "start"]
+FROM scratch AS production
+COPY --from=source /home/node/ /

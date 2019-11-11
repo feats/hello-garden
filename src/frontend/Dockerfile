@@ -1,4 +1,10 @@
 ##
+## Images of shared modules
+##
+ARG MYLIB_IMAGE_VERSION=latest
+FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
+
+##
 ## Base
 ##
 FROM node:alpine AS base
@@ -12,36 +18,29 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-RUN mkdir shared backend frontend
+COPY --from=mylib / mylib
+RUN mkdir frontend
 WORKDIR $HOME/frontend
-COPY frontend/package*.json frontend/setup-npm-env.sh ./
-RUN touch config.js && \
-	npm set progress=false && \
-    npm config set depth 0 && \
-    npm install --only=production
+COPY package*.json ./
+RUN npm set progress=false && \
+    npm clean-install --quiet --depth 0 --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm set progress=false && \
-    npm config set depth 0 && \
-    npm install
+RUN npm clean-install
 
 ##
 ## Source code
 ##
 FROM production-dependencies AS source
-COPY shared/ ../shared/
-COPY backend/config.js ../backend/
-COPY frontend/ ./
+COPY ./ ./
 
 ##
 ## Test
 ##
 FROM test-dependencies AS test
-COPY --from=source $HOME/shared/ $HOME/shared/
-COPY --from=source $HOME/backend/ $HOME/backend/
 COPY --from=source $HOME/frontend/ $HOME/frontend/
 RUN npm test
 

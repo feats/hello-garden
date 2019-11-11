@@ -1,7 +1,7 @@
 'use strict'
 
-const backend = require('backend')
-const config = require('backend/config').server
+const backend = require('./')
+const config = require('./config').server
 
 const serverListener = backend.listen(config.port, () => {
   console.log(JSON.stringify({

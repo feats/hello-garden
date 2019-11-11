@@ -1,0 +1,26 @@
+kind: Module
+name: backend
+description: Backend service
+type: container
+build:
+  dependencies:
+    - mylib
+buildArgs:
+  MYLIB_IMAGE_VERSION: ${modules.mylib.version}
+hotReload:
+  sync:
+    - target: /home/node/backend/
+services:
+  - name: backend
+    ports:
+      - name: api
+        containerPort: 3000
+        servicePort: 80
+    healthCheck:
+      httpGet:
+        path: /
+        port: api
+    ingresses:
+      # Do we really have to list every endpoint?
+      - path: /random
+        port: api

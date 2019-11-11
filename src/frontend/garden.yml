@@ -1,0 +1,29 @@
+kind: Module
+name: frontend
+description: Frontend web service
+type: container
+build:
+  dependencies:
+    - mylib
+buildArgs:
+  MYLIB_IMAGE_VERSION: ${modules.mylib.version}
+  BACKEND_IMAGE_VERSION: ${modules.backend.version}
+hotReload:
+  sync:
+    - target: /home/node/frontend/
+services:
+  - name: frontend
+    ports:
+      - name: http
+        containerPort: 5000
+    healthCheck:
+      httpGet:
+        path: /
+        port: http
+    ingresses:
+      - path: /
+        port: http
+      - path: /answer
+        port: http
+    dependencies:
+      - backend

@@ -2,10 +2,16 @@
 
 ## Run directly
 
-    $ npm install
+    $ npm clean-install
     $ npm test
     $ npm start
 
 ## Container
 
-    $ docker build -f Dockerfile ..
+First build `../mylib`.  Then:
+
+    $ docker build .
+
+## Update dependencies
+
+	$ npm install
