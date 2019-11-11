@@ -2,10 +2,8 @@
 ## Images of shared modules
 ##
 ARG MYLIB_IMAGE_VERSION=latest
-ARG BACKEND_IMAGE_VERSION=latest
 
 FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
-FROM backend:${BACKEND_IMAGE_VERSION} AS backend
 
 ##
 ## Base
@@ -22,7 +20,7 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ##
 FROM base AS production-dependencies
 COPY --from=mylib / mylib
-RUN mkdir frontend backend
+RUN mkdir frontend
 WORKDIR $HOME/frontend
 COPY package*.json ./
 RUN touch config.js && \
@@ -40,14 +38,12 @@ RUN npm install
 ## Source code
 ##
 FROM production-dependencies AS source
-COPY --from=backend /home/node/backend/config.js backend/config.js
 COPY ./ ./
 
 ##
 ## Test
 ##
 FROM test-dependencies AS test
-COPY --from=source $HOME/backend/ $HOME/backend/
 COPY --from=source $HOME/frontend/ $HOME/frontend/
 RUN npm test
 

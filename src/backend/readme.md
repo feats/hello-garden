@@ -8,4 +8,6 @@
 
 ## Container
 
-    $ docker build -f Dockerfile ..
+First build `../mylib`.  Then:
+
+    $ docker build .

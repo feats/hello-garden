@@ -4,3 +4,7 @@
 
     $ npm install
     $ npm test
+
+## Container
+
+    $ docker build --tag mylib .
