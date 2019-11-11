@@ -4,4 +4,5 @@ description: Shared packages
 type: container
 hotReload:
   sync:
+    # Not sure how this is supposed to work
     - target: /

@@ -9,7 +9,7 @@ buildArgs:
   MYLIB_IMAGE_VERSION: ${modules.mylib.version}
 hotReload:
   sync:
-    - target: /home/node/
+    - target: /home/node/backend/
 services:
   - name: backend
     ports:

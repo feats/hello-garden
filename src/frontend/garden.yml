@@ -10,7 +10,7 @@ buildArgs:
   BACKEND_IMAGE_VERSION: ${modules.backend.version}
 hotReload:
   sync:
-    - target: /home/node/
+    - target: /home/node/frontend/
 services:
   - name: frontend
     ports:
