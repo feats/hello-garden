@@ -5,7 +5,6 @@ type: container
 build:
   dependencies:
     - mylib
-    - backend
 buildArgs:
   MYLIB_IMAGE_VERSION: ${modules.mylib.version}
   BACKEND_IMAGE_VERSION: ${modules.backend.version}

@@ -2,7 +2,6 @@
 ## Images of shared modules
 ##
 ARG MYLIB_IMAGE_VERSION=latest
-
 FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
 
 ##
@@ -11,7 +10,7 @@ FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
 FROM node:alpine AS base
 RUN apk add --no-cache nodejs-current tini
 ENV HOME=/home/node
-# USER node # http://npm.github.io/installation-setup-docs/installing/a-note-on-permissions.html
+USER node
 WORKDIR $HOME
 ENTRYPOINT ["/sbin/tini", "--"]
 
@@ -23,16 +22,14 @@ COPY --from=mylib / mylib
 RUN mkdir frontend
 WORKDIR $HOME/frontend
 COPY package*.json ./
-RUN touch config.js && \
-    npm set progress=false && \
-    npm config set depth 0
-RUN npm install --only=production
+RUN npm set progress=false && \
+    npm clean-install --quiet --depth 0 --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm install
+RUN npm clean-install
 
 ##
 ## Source code

@@ -1,0 +1,4 @@
+.dockerignore
+Dockerfile
+garden.yml
+**/node_modules/

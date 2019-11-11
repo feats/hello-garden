@@ -10,7 +10,7 @@ FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
 FROM node:alpine AS base
 RUN apk add --no-cache nodejs-current tini
 ENV HOME=/home/node
-# USER node
+USER node
 WORKDIR $HOME
 ENTRYPOINT ["/sbin/tini", "--"]
 
@@ -22,16 +22,14 @@ COPY --from=mylib / mylib
 RUN mkdir backend
 WORKDIR $HOME/backend
 COPY package*.json ./
-RUN touch config.js && \
-    npm set progress=false && \
-    npm config set depth 0
-RUN npm install --only=production
+RUN npm set progress=false && \
+    npm clean-install --quiet --depth 0 --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm install
+RUN npm clean-install
 
 ##
 ## Source code

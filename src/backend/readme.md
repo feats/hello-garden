@@ -2,7 +2,7 @@
 
 ## Run directly
 
-    $ npm install
+    $ npm clean-install
     $ npm test
     $ npm start
 
@@ -11,3 +11,7 @@
 First build `../mylib`.  Then:
 
     $ docker build .
+
+## Update dependencies
+
+	$ npm install
