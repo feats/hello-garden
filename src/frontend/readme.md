@@ -8,7 +8,7 @@
 
 ## Container
 
-First build `../mylib`.  Then:
+First build `../lib` container.  Then:
 
     $ docker build .
 

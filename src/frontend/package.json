@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "myfrontend",
   "version": "0.3.0",
   "description": "Minimal build & deploy pipeline - frontend",
   "author": "Jens Peter Secher",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mylib": "file:../mylib",
+    "lib": "file:../lib",
     "nodemon": "^1.19.2",
     "request": "^2.88.0"
   },

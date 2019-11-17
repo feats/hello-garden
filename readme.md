@@ -104,7 +104,7 @@ Cleanup:
 - Garden: `name` is freetext in `environments`, but a selector in `providers`.
 - Garden: All examples use deprecated syntax.
 - Garden Console displays blank page for Logs.
-- Garden does not cleanup the module build directories, so to make sure that, say, the `include` actually includes what is needed, you need to manually clean the build dirs.
+- Garden does not cleanup the module build directories, so to make sure that, say, the `include` actually includes what is needed, you need to manually clean the build dirs.  If you see `Error: Command "git ls-files --ignored --exclude-per-directory .gitignore" failed with code 128`, this is the problem.
 - Find a way to make Garden dashboard use the same port.
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/

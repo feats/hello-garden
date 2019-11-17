@@ -1,6 +1,6 @@
 'use strict'
 
-const tcp = require('mylib')
+const tcp = require('lib')
 
 // This is the only place to read process.env settings.  The point is that the
 // service should use the configuration like
@@ -19,5 +19,5 @@ const tcp = require('mylib')
 
 exports.server = {
   port: tcp.normalizePort(process.env.PORT) || 5000,
-  backendUrl: 'backend'
+  backendUrl: process.env.BACKEND_URL || 'backend'
 }

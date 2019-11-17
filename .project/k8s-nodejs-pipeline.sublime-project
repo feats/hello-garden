@@ -1,7 +1,7 @@
 { "folders":
   [ { "path": ".."
     , "folder_exclude_patterns":
-      [ "cypress/screenshots"
+      [ ".garden"
       , "node_modules"
       ]
     , "file_exclude_patterns":

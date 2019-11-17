@@ -1,5 +1,5 @@
 {
-  "name": "mylib",
+  "name": "lib",
   "version": "0.2.0",
   "description": "Minimal build & deploy pipeline - shared",
   "author": "Jens Peter Secher",

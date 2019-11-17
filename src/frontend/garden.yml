@@ -1,5 +1,5 @@
 kind: Module
-name: frontend
+name: myfrontend
 description: Frontend web service
 type: container
 build:
@@ -7,7 +7,7 @@ build:
     - mylib
 buildArgs:
   MYLIB_IMAGE_VERSION: ${modules.mylib.version}
-  BACKEND_IMAGE_VERSION: ${modules.backend.version}
+  BACKEND_IMAGE_VERSION: ${modules.mybackend.version}
 hotReload:
   sync:
     - target: /home/node/frontend/

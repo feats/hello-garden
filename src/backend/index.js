@@ -3,6 +3,9 @@
 const express = require('express')
 const backend = express()
 
+const auth = require('express-basic-auth')
+backend.use(/^\/.+$/, auth({users: {'frontend': 's3cr3t'}}))
+
 backend.get('/', (req, res) => {
   res.json({
     siteversion: require('./package').version,

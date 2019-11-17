@@ -1,5 +1,5 @@
 kind: Module
-name: backend
+name: mybackend
 description: Backend service
 type: container
 build:

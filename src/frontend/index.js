@@ -15,7 +15,7 @@ frontend.get('/', (req, res) => {
         $(document).ready(() => {
           $("#get-answer").click(() => {
             $.ajax({
-              type: "GET",
+              method: "GET",
               url: "/answer",
               success: (data) => {
                 $("#contents").replaceWith("<p>The answer is "+data+"<p>")
@@ -40,14 +40,25 @@ frontend.get('/', (req, res) => {
 
 frontend.get('/answer', (req, res) => {
   const backend = require('./config').server.backendUrl
-  const url = `http://${backend}/random`
-  request(url, {}, (err, _res, answer) => {
-    if (err) {
-      console.log('got error:' + JSON.stringify(err))
-      res.end(500)
+  const options = {
+    url: `http://${backend}/random`,
+    headers: {
+      'Authorization': `Basic ${Buffer.from('frontend:s3cr3t').toString('base64')}`
     }
+  }
+  request(options, (err, backendRes, body) => {
     res.set('Content-Type', 'text/plain')
-    res.send(answer.toString())
+    if (err) {
+      const msg = `backend error: ${JSON.stringify(err)}`
+      console.log(msg)
+      return res.status(500).send(msg)
+    }
+    if (backendRes.statusCode !== 200) {
+      const msg = `backend status error: ${backendRes.statusCode}`
+      console.log(msg)
+      return res.status(500).send(msg)
+    }
+    res.send(body.toString())
   })
 })
 

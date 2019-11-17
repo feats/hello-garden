@@ -18,7 +18,7 @@ ENTRYPOINT ["/sbin/tini", "--"]
 ## Production dependencies
 ##
 FROM base AS production-dependencies
-COPY --from=mylib / mylib
+COPY --from=mylib / lib
 RUN mkdir backend
 WORKDIR $HOME/backend
 COPY package*.json ./

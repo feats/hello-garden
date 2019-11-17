@@ -1,0 +1,22 @@
+{
+  "name": "myintegration",
+  "version": "0.1.0",
+  "description": "Minimal build & deploy pipeline - integration tests",
+  "author": "Jens Peter Secher",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/featsco/hello-garden.git"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-integer": "^0.1.0",
+    "express": "^4.17.1",
+    "mocha": "^4.1.0",
+    "request": "^2.88.0",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "test": "mocha *_test.js"
+  }
+}

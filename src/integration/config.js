@@ -1,7 +1,5 @@
 'use strict'
 
-const tcp = require('lib')
-
 // This is the only place to read process.env settings.  The point is that the
 // service should use the configuration like
 //
@@ -17,6 +15,7 @@ const tcp = require('lib')
 //     const port = require('./config').server.port
 //     mymodule(port)
 
-exports.server = {
-  port: tcp.normalizePort(process.env.PORT) || 3000
+module.exports = {
+  backendUrl: process.env.BACKEND_URL || 'backend',
+  frontendUrl: process.env.FRONTEND_URL || 'frontend'
 }

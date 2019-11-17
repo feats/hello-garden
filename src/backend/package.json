@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Minimal build & deploy pipeline - backend",
   "author": "Jens Peter Secher",
   "license": "ISC",
@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mylib": "file:../mylib",
+    "express-basic-auth": "^1.2.0",
+    "lib": "file:../lib",
     "nodemon": "^1.19.2",
     "request": "^2.88.0"
   },

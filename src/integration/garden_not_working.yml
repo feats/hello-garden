@@ -1,0 +1,9 @@
+kind: Module
+name: myintegration
+description: Integration tests
+type: container
+tests:
+- name: integration
+  dependencies:
+    - backend
+    - frontend
