@@ -18,6 +18,10 @@ const tcp = require('lib')
 //     mymodule(port)
 
 exports.server = {
-  port: tcp.normalizePort(process.env.PORT) || 5000,
-  backendUrl: process.env.BACKEND_URL || 'backend'
+  port: tcp.normalizePort(process.env.PORT) || 5000
+}
+
+exports.backend = {
+  url: process.env.BACKEND_URL || 'backend',
+  auth: 'frontend:s3cr3t'
 }

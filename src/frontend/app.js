@@ -1,6 +1,6 @@
 'use strict'
 
-const frontend = require('./')
+const frontend = require('./index')
 const config = require('./config').server
 
 const serverListener = frontend.listen(config.port, () => {

@@ -2,6 +2,7 @@
 
 const express = require('express')
 const request = require('request')
+const backend = require('./config').backend
 
 const frontend = express()
 
@@ -18,7 +19,12 @@ frontend.get('/', (req, res) => {
               method: "GET",
               url: "/answer",
               success: (data) => {
-                $("#contents").replaceWith("<p>The answer is "+data+"<p>")
+                $("#contents").replaceWith(
+                  "<p>The answer is "+data+"</p><button id=\\"try-again\\">OK, I got it</button>"
+                )
+                $("#try-again").click(() => {
+                  location.reload(true)
+                })
               },
               error: (err) => {
                 console.log('got error:' + JSON.stringify(err))
@@ -39,23 +45,20 @@ frontend.get('/', (req, res) => {
 })
 
 frontend.get('/answer', (req, res) => {
-  const backend = require('./config').server.backendUrl
   const options = {
-    url: `http://${backend}/random`,
+    url: `http://${backend.url}/random`,
     headers: {
-      'Authorization': `Basic ${Buffer.from('frontend:s3cr3t').toString('base64')}`
+      'Authorization': `Basic ${Buffer.from(backend.auth).toString('base64')}`
     }
   }
   request(options, (err, backendRes, body) => {
     res.set('Content-Type', 'text/plain')
     if (err) {
       const msg = `backend error: ${JSON.stringify(err)}`
-      console.log(msg)
       return res.status(500).send(msg)
     }
     if (backendRes.statusCode !== 200) {
       const msg = `backend status error: ${backendRes.statusCode}`
-      console.log(msg)
       return res.status(500).send(msg)
     }
     res.send(body.toString())
