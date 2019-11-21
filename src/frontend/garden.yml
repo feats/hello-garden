@@ -15,6 +15,7 @@ services:
   - name: frontend
     ports:
       - name: http
+        servicePort: 80
         containerPort: 5000
     healthCheck:
       httpGet:
