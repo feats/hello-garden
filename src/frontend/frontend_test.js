@@ -15,7 +15,7 @@ Browser.localhost('myfrontend.io', testPort)
 
 describe('frontend API', () => {
   it('should handle access denied from backend', done => {
-    nock(`http://${config.backend.url}`)
+    nock(config.backend.url)
     .get('/random')
     .reply(401)
     supertest(app)
@@ -33,7 +33,7 @@ describe('frontend API', () => {
 
   it('should handle connection problems with backend', done => {
     const error = {'error': 'connection timed out'}
-    nock(`http://${config.backend.url}`)
+    nock(config.backend.url)
     .get('/random')
     .replyWithError(error)
     supertest(app)
@@ -50,7 +50,7 @@ describe('frontend API', () => {
   })
 
   it('should retrieve an answer from the backend', done => {
-    nock(`http://${config.backend.url}`)
+    nock(config.backend.url)
     .get('/random')
     .reply(200, '1234')
     supertest(app)
@@ -87,7 +87,7 @@ describe('frontend web page', () => {
 
   describe('answer button clicked', () => {
     beforeEach(() => {
-      nock(`http://${config.backend.url}`).get('/random').reply(200, '1234')
+      nock(config.backend.url).get('/random').reply(200, '1234')
       return browser.pressButton('#get-answer')
     })
 

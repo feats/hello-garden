@@ -10,7 +10,7 @@ const expect = chai.expect
 
 describe('Frontend service', () => {
   it('should present front page with oracle button', done => {
-    request(`http://${frontend}`)
+    request(frontend)
     .get('/')
     .set('Accept', 'text/html')
     .expect('Content-Type', /text\/html/)

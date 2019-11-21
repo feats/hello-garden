@@ -46,7 +46,7 @@ frontend.get('/', (req, res) => {
 
 frontend.get('/answer', (req, res) => {
   const options = {
-    url: `http://${backend.url}/random`,
+    url: `${backend.url}/random`,
     headers: {
       'Authorization': `Basic ${Buffer.from(backend.auth).toString('base64')}`
     }

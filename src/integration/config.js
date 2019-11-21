@@ -16,6 +16,6 @@
 //     mymodule(port)
 
 module.exports = {
-  backendUrl: process.env.BACKEND_URL || 'backend',
-  frontendUrl: process.env.FRONTEND_URL || 'frontend'
+  backendUrl: process.env.BACKEND_URL || 'http://backend',
+  frontendUrl: process.env.FRONTEND_URL || 'http://frontend'
 }
