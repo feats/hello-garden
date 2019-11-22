@@ -1,8 +1,9 @@
 ##
 ## Images of shared modules
 ##
+ARG MYLIB_IMAGE_NAME=mylib
 ARG MYLIB_IMAGE_VERSION=latest
-FROM mylib:${MYLIB_IMAGE_VERSION} AS mylib
+FROM ${MYLIB_IMAGE_NAME}:${MYLIB_IMAGE_VERSION} AS mylib
 # Works on staging: FROM 127.0.0.1:5000/staging/mylib:${MYLIB_IMAGE_VERSION} AS mylib
 
 ##

@@ -87,3 +87,4 @@ Cleanup:
 - Google Storage: gs://cf7de674b9c84a08b9725fa3ac833ffd
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
 - buildbot.net
+- Find out how to control names of images when using [build dependency on images](https://github.com/garden-io/garden/issues/1329).

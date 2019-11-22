@@ -6,6 +6,7 @@ build:
   dependencies:
     - mylib
 buildArgs:
+  MYLIB_IMAGE_NAME: ${modules.mylib.outputs.deployment-image-name}
   MYLIB_IMAGE_VERSION: ${modules.mylib.version}
 hotReload:
   sync:
