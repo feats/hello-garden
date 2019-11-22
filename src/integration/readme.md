@@ -10,6 +10,8 @@ Both backend and frontend must be running:
 And the environment must be set up to point to the backend and front services:
 
     $ export BACKEND_URL=http://localhost:3000
+    $ export BACKEND_USER=noone
+    $ export BACKEND_PASSWORD=abs1234
     $ export FRONTEND_URL=http://localhost:5000
 
 Then the integration test can be run:
