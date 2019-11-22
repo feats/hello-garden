@@ -18,6 +18,6 @@
 module.exports = {
   backendUrl: process.env.BACKEND_URL || 'http://backend',
   frontendUrl: process.env.FRONTEND_URL || 'http://frontend',
-  user: 'frontend',
-  password: 's3cr3t'
+  user: process.env.BACKEND_USER || 'noone',
+  password: process.env.BACKEND_PASSWORD || 'abc1234'
 }

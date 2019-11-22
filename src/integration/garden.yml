@@ -4,6 +4,9 @@ description: Integration tests
 type: container
 tests:
 - name: integration
+  env:
+    BACKEND_USER: ${var.user}
+    BACKEND_PASSWORD: ${var.password}
   dependencies:
     - backend
     - frontend

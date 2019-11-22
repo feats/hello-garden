@@ -17,6 +17,9 @@ services:
       - name: http
         servicePort: 80
         containerPort: 5000
+    env:
+      BACKEND_USER: ${var.user}
+      BACKEND_PASSWORD: ${var.password}
     healthCheck:
       httpGet:
         path: /

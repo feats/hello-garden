@@ -19,6 +19,6 @@ const tcp = require('lib')
 
 exports.server = {
   port: tcp.normalizePort(process.env.PORT) || 3000,
-  user: 'frontend',
-  password: 's3cr3t'
+  user: process.env.BACKEND_USER || 'noone',
+  password: process.env.BACKEND_PASSWORD || 'abc1234'
 }
