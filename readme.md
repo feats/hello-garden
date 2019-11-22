@@ -44,36 +44,14 @@ Cleanup:
 
 GCP console: https://console.cloud.google.com/
 
-    $ brew cask install google-cloud-sdk
-    $ gcloud components update
-    $ gcloud auth login
-    $ gcloud compute regions list
-    $ gcloud compute zones list
-    $ gcloud config set compute/region europe-west1
-    $ gcloud config set compute/zone europe-west1-b
-    $ gcloud projects create kaleidoscope-1-nodejs --set-as-default
-    $ gcloud config set project kaleidoscope-1-nodejs
+The `garden.yml` in the root of the repo must contain an environment `staging` that has context `gke_${project}_${zone}_${cluster}`.
 
-The configuration is stored locally in `~/.config/gcloud/`.  You can view the current configuration:
-
-    $ gcloud config list
-
-Enable [GKE](https://console.cloud.google.com/apis/library/container.googleapis.com?q=kubernetes%20engine) in GCP.
-
-Create a cluster (with the above config it defaults to single zone & stable K8s channel):
-
-    $ gcloud container clusters create garden-1 --quiet
-    $ gcloud container clusters list
-    $ gcloud container clusters get-credentials garden-1
-
-Last one puts certificate, etc. in `~/.kube/config`.
-
-Check that the new cluster is the *current*, or change the context:
+Check that the *current* cluster is the right one, or else change the context:
 
     $ kubectl config current-context
     $ kubectl config use-context gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
 
-The `garden.yml` in the root of the repo must contain an environment `staging` that has context `gke_${project}_${zone}_${cluster}`.  Then populate the cluster with registry, build pipeline, etc.:
+Then populate the cluster with registry, build pipeline, etc.:
 
     $ garden plugins kubernetes cluster-init --env=staging
     $ garden get status --env=staging
