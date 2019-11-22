@@ -18,5 +18,7 @@ const tcp = require('lib')
 //     mymodule(port)
 
 exports.server = {
-  port: tcp.normalizePort(process.env.PORT) || 3000
+  port: tcp.normalizePort(process.env.PORT) || 3000,
+  user: 'frontend',
+  password: 's3cr3t'
 }

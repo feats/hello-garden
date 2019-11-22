@@ -23,5 +23,6 @@ exports.server = {
 
 exports.backend = {
   url: process.env.BACKEND_URL || 'http://backend',
-  auth: 'frontend:s3cr3t'
+  user: 'frontend',
+  password: 's3cr3t'
 }

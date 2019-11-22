@@ -4,6 +4,7 @@
 
 const chai = require('chai')
 const supertest = require('supertest')
+const config = require('./config').server
 
 chai.use(require('chai-integer'))
 const expect = chai.expect
@@ -43,7 +44,8 @@ describe('backend API', () => {
       .end(done)
     })
     it('should return a random number given valid token', done => {
-      const authHeader = 'Basic ' + Buffer.from('frontend:s3cr3t').toString('base64')
+      const auth = `${config.user}:${config.password}`
+      const authHeader = 'Basic ' + Buffer.from(auth).toString('base64')
       let firstNumber
       supertest(app)
       .get('/random')

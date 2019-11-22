@@ -2,9 +2,10 @@
 
 const express = require('express')
 const backend = express()
+const config = require('./config').server
 
 const auth = require('express-basic-auth')
-backend.use(/^\/.+$/, auth({users: {'frontend': 's3cr3t'}}))
+backend.use(/^\/.+$/, auth({users: {[config.user]: `${config.password}`}}))
 
 backend.get('/', (req, res) => {
   res.json({

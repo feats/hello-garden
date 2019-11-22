@@ -45,10 +45,11 @@ frontend.get('/', (req, res) => {
 })
 
 frontend.get('/answer', (req, res) => {
+  const auth = `${backend.user}:${backend.password}`
   const options = {
     url: `${backend.url}/random`,
     headers: {
-      'Authorization': `Basic ${Buffer.from(backend.auth).toString('base64')}`
+      'Authorization': `Basic ${Buffer.from(auth).toString('base64')}`
     }
   }
   request(options, (err, backendRes, body) => {

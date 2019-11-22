@@ -4,13 +4,13 @@
 
 const chai = require('chai')
 const request = require('supertest')
-const frontend = require('./config').frontendUrl
+const config = require('./config')
 
 const expect = chai.expect
 
 describe('Frontend service', () => {
   it('should present front page with oracle button', done => {
-    request(frontend)
+    request(config.frontendUrl)
     .get('/')
     .set('Accept', 'text/html')
     .expect('Content-Type', /text\/html/)

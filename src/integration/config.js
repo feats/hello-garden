@@ -17,5 +17,7 @@
 
 module.exports = {
   backendUrl: process.env.BACKEND_URL || 'http://backend',
-  frontendUrl: process.env.FRONTEND_URL || 'http://frontend'
+  frontendUrl: process.env.FRONTEND_URL || 'http://frontend',
+  user: 'frontend',
+  password: 's3cr3t'
 }
