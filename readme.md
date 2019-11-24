@@ -33,12 +33,17 @@ Start Garden pipeline for the default environment *development*:
 
 Start dev console:
 
-    $ garden dev --hot=backend --hot=frontend
+    $ garden dev
 
 Cleanup:
 
     $ garden delete environment
 
+## Hot reload
+
+    $ garden dev --hot=backend --hot=frontend
+
+But with hot reload, the integration is not rerun with changes.
 
 ### GKE
 

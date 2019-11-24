@@ -1,8 +1,7 @@
 ##
 ## Base
 ##
-FROM node:alpine AS base
-RUN apk add --no-cache nodejs-current
+FROM node:12.13.0-alpine3.10 AS base
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME
