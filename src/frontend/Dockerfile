@@ -9,6 +9,7 @@ FROM ${MYLIB_IMAGE_NAME}:${MYLIB_IMAGE_VERSION} AS mylib
 ## Base
 ##
 FROM node:lts-alpine AS base
+RUN apk add --no-cache tini
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME
@@ -22,14 +23,14 @@ COPY --from=mylib / lib
 RUN mkdir frontend
 WORKDIR $HOME/frontend
 COPY package*.json ./
-RUN npm set progress=false && \
-    npm clean-install --quiet --depth 0 --only=production
+RUN npm set progress=false && npm config set depth 0
+RUN npm clean-install --quiet --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm clean-install
+RUN npm clean-install --quiet
 
 ##
 ## Source code

@@ -11,15 +11,14 @@ WORKDIR $HOME
 ##
 FROM base AS production-dependencies
 COPY package*.json ./
-RUN npm set progress=false && \
-    npm clean-install --quiet --depth 0 --only=production
+RUN npm set progress=false && npm config set depth 0
+RUN npm clean-install --quiet --only=production
 
 ##
 ## Test dependencies
 ##
 FROM production-dependencies AS test-dependencies
-RUN npm set progress=false && \
-    npm clean-install --quiet --depth 0
+RUN npm clean-install --quiet
 
 ##
 ## Source code
