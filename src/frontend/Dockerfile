@@ -4,13 +4,11 @@
 ARG MYLIB_IMAGE_NAME=mylib
 ARG MYLIB_IMAGE_VERSION=latest
 FROM ${MYLIB_IMAGE_NAME}:${MYLIB_IMAGE_VERSION} AS mylib
-# Works on staging: FROM 127.0.0.1:5000/staging/mylib:${MYLIB_IMAGE_VERSION} AS mylib
 
 ##
 ## Base
 ##
-FROM node:alpine AS base
-RUN apk add --no-cache nodejs-current tini
+FROM node:lts-alpine AS base
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME

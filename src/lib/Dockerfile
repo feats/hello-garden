@@ -1,7 +1,7 @@
 ##
 ## Base
 ##
-FROM node:12.13.0-alpine3.10 AS base
+FROM node:lts-alpine AS base
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME

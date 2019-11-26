@@ -8,8 +8,7 @@ FROM ${MYLIB_IMAGE_NAME}:${MYLIB_IMAGE_VERSION} AS mylib
 ##
 ## Base
 ##
-FROM node:alpine AS base
-RUN apk add --no-cache nodejs-current tini
+FROM node:lts-alpine AS base
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME

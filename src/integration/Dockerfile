@@ -1,5 +1,4 @@
-FROM node:alpine AS base
-RUN apk add --no-cache nodejs-current
+FROM node:lts-alpine AS base
 ENV HOME=/home/node
 USER node
 WORKDIR $HOME
