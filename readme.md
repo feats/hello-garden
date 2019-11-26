@@ -43,7 +43,7 @@ Cleanup:
 
     $ garden dev --hot=backend --hot=frontend
 
-But with hot reload, the integration is not rerun with changes.
+But with hot reload, the integration is not rerun with changes.  In fact, it is not a good idea to include tests in the build process of the container in combination with hot reload, because if the tests fails, the container will not be built, and then there is nowhere for Garden to hotsync the files to.
 
 ### GKE
 
