@@ -103,5 +103,6 @@ Cleanup:
 ## Secrets
 
     kubectl config current-context
+    kubectl create namespace hello-garden
     kubectl --namespace=hello-garden create secret generic my-secrets --from-env-file=secrets.development.env
     kubectl get secrets/my-secrets --namespace hello-garden
