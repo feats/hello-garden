@@ -6,7 +6,10 @@ tests:
 - name: integration
   env:
     BACKEND_USER: ${var.user}
-    BACKEND_PASSWORD: ${var.password}
+    BACKEND_PASSWORD:
+      secretRef:
+        name: my-secrets
+        key: password
   dependencies:
     - backend
     - frontend

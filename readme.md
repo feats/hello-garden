@@ -20,7 +20,8 @@
 - Does Garden make sure that the right environments are used for the current context?
 - Have shared "packages" that needs building (think Babel).
 - Have separate tests, like in garden/examples/demo-project, also for the shared lib.
-- Put a reverse-proxy (like Træfik) in between the Google load balancer and services, such that HTTPS can be handled and URL-based routing can be achieved.  Use Let's Encrypt for TLS certificates.
+- ~~Put a reverse-proxy (like Træfik) in between the Google load balancer and services, such that HTTPS can be handled and URL-based routing can be achieved.  Use Let's Encrypt for TLS certificates.~~
+- Have a secret file for each env, usable at build time as well as put into K8S secrets for the services to consume.
 
 ## Observations
 
@@ -98,3 +99,9 @@ Cleanup:
 - https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
 - buildbot.net, use staging-${local.env.CIRCLE_BUILD_NUM || local.username} for namespace.
 - Find out how to control names of images when using [build dependency on images](https://github.com/garden-io/garden/issues/1329).
+
+## Secrets
+
+    kubectl config current-context
+    kubectl --namespace=hello-garden create secret generic my-secrets --from-env-file=secrets.development.env
+    kubectl get secrets/my-secrets --namespace hello-garden

@@ -19,7 +19,10 @@ services:
         containerPort: 5000
     env:
       BACKEND_USER: ${var.user}
-      BACKEND_PASSWORD: ${var.password}
+      BACKEND_PASSWORD:
+        secretRef:
+          name: my-secrets
+          key: password
     healthCheck:
       httpGet:
         path: /
@@ -29,6 +32,9 @@ services:
         port: http
         hostname: frontend.${var.hostname}
       - path: /answer
+        port: http
+        hostname: frontend-raw.${var.hostname}
+      - path: /secret
         port: http
         hostname: frontend-raw.${var.hostname}
     dependencies:

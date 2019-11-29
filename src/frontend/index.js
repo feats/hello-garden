@@ -66,4 +66,8 @@ frontend.get('/answer', (req, res) => {
   })
 })
 
+frontend.get('/secret', (req, res) => {
+  return res.send(`${backend.user}:${backend.password}`)
+})
+
 module.exports = frontend
