@@ -20,6 +20,7 @@
 - Does Garden make sure that the right environments are used for the current context?
 - Have shared "packages" that needs building (think Babel).
 - Have separate tests, like in garden/examples/demo-project, also for the shared lib.
+- Put a reverse-proxy (like Træfik) in between the Google load balancer and services, such that HTTPS can be handled and URL-based routing can be achieved.  Use Let's Encrypt for TLS certificates.
 
 ## Observations
 
@@ -68,6 +69,10 @@ Make sure there is a DNS A record set for `kaleidoscope.dk` pointing to the Gard
 Start the development environment:
 
     $ garden dev --env=staging
+
+Or just deploy:
+
+    $ garden deploy --env=staging
 
 Cleanup:
 
