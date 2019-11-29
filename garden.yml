@@ -11,7 +11,6 @@ providers:
   - name: kubernetes
     context: gke_kaleidoscope-1-nodejs_europe-west1-b_garden-1
     namespace: staging
-    defaultHostname: kaleidoscope.dk
     buildMode: cluster-docker
     setupIngressController: nginx
     environments:

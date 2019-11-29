@@ -8,6 +8,7 @@ build:
 buildArgs:
   MYLIB_IMAGE_NAME: ${modules.mylib.outputs.deployment-image-name}
   MYLIB_IMAGE_VERSION: ${modules.mylib.version}
+
 hotReload:
   sync:
     - target: /home/node/backend/
@@ -28,3 +29,4 @@ services:
       # Do we really have to list every endpoint?
       - path: /random
         port: api
+        hostname: backend.${var.hostname}

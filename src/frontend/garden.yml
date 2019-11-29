@@ -27,7 +27,9 @@ services:
     ingresses:
       - path: /
         port: http
+        hostname: frontend.${var.hostname}
       - path: /answer
         port: http
+        hostname: frontend-raw.${var.hostname}
     dependencies:
       - backend
