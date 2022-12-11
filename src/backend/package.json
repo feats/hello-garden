@@ -15,7 +15,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-basic-auth": "^1.2.0",
     "lib": "file:../lib",
     "nodemon": "^1.19.2",
